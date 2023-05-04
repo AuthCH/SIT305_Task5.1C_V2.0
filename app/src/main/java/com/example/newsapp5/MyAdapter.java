@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -36,6 +37,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.titleimage.setImageResource(tslist.get(position).getImage());
         holder.heading.setText(tslist.get(position).getNews());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                DetailFragment fragment = new DetailFragment();
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame,fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
     }
 
